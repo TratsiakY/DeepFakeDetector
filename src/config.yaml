@@ -1,0 +1,60 @@
+batch_size: 128
+cls_loss:
+  label_smoothing: 0
+  loss: CrossEntropyLoss
+  loss_reduction: mean
+  loss_weight:
+  - 2.0973428230121365
+  - 1.9112922407010995
+comment: fine tune ftt model debug
+fine_tune: null
+ftt_loss:
+  loss: MSELoss
+  loss_reduction: mean
+model: MultiFTNet_model
+model_params:
+  conv6_kernel:
+  - 8
+  - 8
+  embedding_size: 128
+  img_channel: 3
+  num_classes: 2
+n_classes: 2
+n_epoch: 1
+optimizer:
+  lr: 0.01
+  momentum: 0.9
+  nesterov: true
+  optimizer: SGD
+  weight_decay: 0.0001
+path: models/
+pretrained: true
+scheduler:
+  gamma: 0.7
+  milestones:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 22
+  - 30
+  type: MultiStepLR
+seed: 31415926
+shuffle: true
+train_dataset:
+  0:
+  - dataset_/celeb_df/train/live/
+  - dataset_/celeb_df/train/real/
+  - dataset_/ds/train/real/
+  1:
+  - dataset_/celeb_df/train/fake/
+  - dataset_/ds/train/fake/
+valid_dataset:
+  0:
+  - dataset_/ds/test/live/
+  1:
+  - dataset_/ds/test/fake/
