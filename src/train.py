@@ -4,6 +4,9 @@ import torch
 from tqdm import tqdm, trange
 
 def train(model, optimizer, trainds, n_epochs, cls_loss, ftt_loss, valloss, validds, scheduler, m_name, aim_run = None, device = 'cuda', parallel = False, clip = 1):
+    '''
+    todo: Add documentation
+    '''
     model = model.to(device)
     if parallel:
         model = torch.nn.DataParallel(model)
