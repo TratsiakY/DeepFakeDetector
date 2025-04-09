@@ -1,4 +1,8 @@
 '''OpenVino model inference'''
+import multiprocessing as mp
+if mp.get_start_method(allow_none=True) != 'spawn':
+    mp.set_start_method('spawn')
+    
 import cv2
 from openvino.runtime import Core
 import numpy as np
@@ -26,7 +30,7 @@ class OVINEModel():
         #     print(f"Форма выхода {i}: {output.shape}")
     
     def preprocess(self, image):
-        image = cv2.resize(image, (self.input_shape[1], self.input_shape[2]), interpolation=cv2.INTER_AREA) 
+        image = cv2.resize(image, (self.input_shape[2], self.input_shape[3]), interpolation=cv2.INTER_AREA) 
         image = np.transpose(image, (2, 0, 1))[None]
         return image
     
